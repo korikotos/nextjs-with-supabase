@@ -4,6 +4,8 @@ import FeatureCard from "@/components/feature-card"
 import HeroAnimation from "@/components/hero-animation"
 import TimelineSection from "@/components/timeline-section"
 import TestimonialSection from "@/components/testimonial-section"
+import VideoShowcase from "@/components/video-showcase"
+import AppAboutSection from "@/components/app-about-section"
 
 export default function Home() {
   return (
@@ -38,6 +40,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Video Showcase Section */}
+      <VideoShowcase />
+
+      {/* Transparent About Section */}
+      <AppAboutSection />
 
       {/* Features Section */}
       <section className="bg-gradient-to-b from-black to-gray-900 py-24">
@@ -92,6 +100,107 @@ export default function Home() {
       {/* Testimonial Section */}
       <TestimonialSection />
 
+      {/* React Bits Generator Section */}
+      <section className="bg-gradient-to-b from-gray-900 to-black py-24">
+        <div className="container mx-auto px-4">
+          <h2 className="text-center text-4xl font-bold text-white mb-6">React Bits Generator</h2>
+          <p className="text-center text-xl text-gray-300 mb-16 max-w-3xl mx-auto">
+            Harness the power of The Ineffable to generate React components that transcend ordinary development. Create,
+            customize, and preserve your code legacy.
+          </p>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-6">
+            <Link href="/generator/components" className="group">
+              <div className="relative overflow-hidden rounded-2xl bg-purple-900/30 p-6 backdrop-blur-sm transition-all hover:bg-purple-900/50">
+                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-purple-600/20 blur-3xl transition-all group-hover:bg-purple-600/30"></div>
+                <div className="relative z-10">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-600">
+                    <span className="text-white font-bold">{"</>"}</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">UI Components</h3>
+                  <p className="text-gray-300 text-sm">Generate buttons, cards, forms, and more</p>
+                </div>
+              </div>
+            </Link>
+
+            <Link href="/generator/layouts" className="group">
+              <div className="relative overflow-hidden rounded-2xl bg-blue-900/30 p-6 backdrop-blur-sm transition-all hover:bg-blue-900/50">
+                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-blue-600/20 blur-3xl transition-all group-hover:bg-blue-600/30"></div>
+                <div className="relative z-10">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600">
+                    <span className="text-white font-bold">⚏</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Layouts</h3>
+                  <p className="text-gray-300 text-sm">Create responsive page layouts</p>
+                </div>
+              </div>
+            </Link>
+
+            <Link href="/generator/animations" className="group">
+              <div className="relative overflow-hidden rounded-2xl bg-pink-900/30 p-6 backdrop-blur-sm transition-all hover:bg-pink-900/50">
+                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-pink-600/20 blur-3xl transition-all group-hover:bg-pink-600/30"></div>
+                <div className="relative z-10">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-pink-600">
+                    <span className="text-white font-bold">✨</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Animations</h3>
+                  <p className="text-gray-300 text-sm">Add motion and life to components</p>
+                </div>
+              </div>
+            </Link>
+
+            <Link href="/generator/hooks" className="group">
+              <div className="relative overflow-hidden rounded-2xl bg-emerald-900/30 p-6 backdrop-blur-sm transition-all hover:bg-emerald-900/50">
+                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-emerald-600/20 blur-3xl transition-all group-hover:bg-emerald-600/30"></div>
+                <div className="relative z-10">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600">
+                    <span className="text-white font-bold">⚡</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Custom Hooks</h3>
+                  <p className="text-gray-300 text-sm">Generate reusable React hooks</p>
+                </div>
+              </div>
+            </Link>
+
+            <Link href="/generator/ai-images" className="group">
+              <div className="relative overflow-hidden rounded-2xl bg-amber-900/30 p-6 backdrop-blur-sm transition-all hover:bg-amber-900/50">
+                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-amber-600/20 blur-3xl transition-all group-hover:bg-amber-600/30"></div>
+                <div className="relative z-10">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-600">
+                    <span className="text-white font-bold">🎨</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">AI Image Generator</h3>
+                  <p className="text-gray-300 text-sm">Create stunning visuals with AI</p>
+                </div>
+              </div>
+            </Link>
+
+            <Link href="/generator/videos" className="group">
+              <div className="relative overflow-hidden rounded-2xl bg-red-900/30 p-6 backdrop-blur-sm transition-all hover:bg-red-900/50">
+                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-red-600/20 blur-3xl transition-all group-hover:bg-red-600/30"></div>
+                <div className="relative z-10">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-600">
+                    <span className="text-white font-bold">🎬</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Video Creator</h3>
+                  <p className="text-gray-300 text-sm">Upload and generate videos with AI</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              href="/generator"
+              className="inline-flex items-center rounded-full bg-gradient-to-r from-purple-600 to-blue-600 px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:from-purple-700 hover:to-blue-700"
+            >
+              Launch Generator
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="bg-black py-20">
         <div className="container mx-auto px-4 text-center">
@@ -112,4 +221,3 @@ export default function Home() {
     </div>
   )
 }
-

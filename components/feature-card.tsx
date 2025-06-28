@@ -8,7 +8,7 @@ interface FeatureCardProps {
 
 export default function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-gray-800/50 p-6 backdrop-blur-sm transition-all hover:bg-gray-800/70">
+    <div className="group relative overflow-hidden rounded-2xl bg-gray-800/50 p-6 backdrop-blur-sm transition-all hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
       <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 blur-3xl transition-all group-hover:bg-gradient-to-br group-hover:from-purple-600/30 group-hover:to-blue-600/30"></div>
 
       <div className="relative z-10">
@@ -21,4 +21,3 @@ export default function FeatureCard({ icon, title, description }: FeatureCardPro
     </div>
   )
 }
-

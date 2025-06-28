@@ -113,4 +113,3 @@ export default function HeroAnimation() {
 
   return <canvas ref={canvasRef} className="absolute inset-0 bg-black" style={{ opacity: 0.8 }} />
 }
-
