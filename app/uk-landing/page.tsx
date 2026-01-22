@@ -1,13 +1,14 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { LucideCrown, LucideMapPin, PoundSterlingIcon as LucidePound, LucideShield } from "lucide-react"
-import { SQYLOOMLoginForm, useSQYLOOMAuth } from "@/components/sqyloom-auth"
+import { LucideCrown, LucideMapPin, LucideBlend as LucidePound, LucideShield } from "lucide-react"
+import { SQYLOOMLoginForm, SQYLOOMAuthProvider, useSQYLOOMAuth } from "@/components/sqyloom-auth"
 import QuantumTerminal from "@/components/quantum-terminal"
 
-export default function UKLandingPage() {
+function UKLandingContent() {
   const { isAuthenticated } = useSQYLOOMAuth()
 
   if (isAuthenticated) {
@@ -107,4 +108,19 @@ export default function UKLandingPage() {
       </div>
     </div>
   )
+}
+
+const DynamicUKLanding = dynamic(
+  () => Promise.resolve(function WrappedUKLanding() {
+    return (
+      <SQYLOOMAuthProvider>
+        <UKLandingContent />
+      </SQYLOOMAuthProvider>
+    )
+  }),
+  { ssr: false }
+)
+
+export default function UKLandingPage() {
+  return <DynamicUKLanding />
 }

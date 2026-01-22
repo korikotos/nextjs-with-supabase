@@ -1,13 +1,14 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { LucideHeart, LucideCode, LucideRocket, LucideStar } from "lucide-react"
-import { SQYLOOMLoginForm, useSQYLOOMAuth } from "@/components/sqyloom-auth"
+import { SQYLOOMLoginForm, SQYLOOMAuthProvider, useSQYLOOMAuth } from "@/components/sqyloom-auth"
 import QuantumTerminal from "@/components/quantum-terminal"
 
-export default function PersonalHomePage() {
+function PersonalHomeContent() {
   const { isAuthenticated } = useSQYLOOMAuth()
 
   if (isAuthenticated) {
@@ -103,4 +104,19 @@ export default function PersonalHomePage() {
       </div>
     </div>
   )
+}
+
+const DynamicPersonalHome = dynamic(
+  () => Promise.resolve(function WrappedPersonalHome() {
+    return (
+      <SQYLOOMAuthProvider>
+        <PersonalHomeContent />
+      </SQYLOOMAuthProvider>
+    )
+  }),
+  { ssr: false }
+)
+
+export default function PersonalHomePage() {
+  return <DynamicPersonalHome />
 }
