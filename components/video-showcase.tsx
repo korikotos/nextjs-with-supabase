@@ -106,12 +106,19 @@ export default function VideoShowcase() {
               </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 onClick={() => (window.location.href = "/generator/videos")}
                 className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold"
               >
                 Create Your Own Video
+              </Button>
+              <Button
+                onClick={openInstagram}
+                variant="outline"
+                className="border-gray-600 bg-transparent text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-800"
+              >
+                View on Instagram
               </Button>
             </div>
           </div>
