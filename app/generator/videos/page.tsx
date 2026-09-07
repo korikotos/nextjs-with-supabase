@@ -98,14 +98,22 @@ export default function VideosPage() {
     setVideoUrl("")
 
     try {
-      // Simulate AI video generation
-      await new Promise((resolve) => setTimeout(resolve, 5000))
+      const response = await fetch("/api/generate-video", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt }),
+      })
 
-      // For demo, use the provided sample video
-      setVideoUrl("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/14-gR5uBHfw9sGGLqoCxuRU4LQHw9QjVZ.mp4")
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to generate video.")
+      }
+
+      setVideoUrl(data.videoUrl)
     } catch (err) {
       console.error("Error during video generation:", err)
-      setError("An error occurred while generating the video.")
+      setError(err instanceof Error ? err.message : "An error occurred while generating the video.")
     } finally {
       setLoading(false)
     }
