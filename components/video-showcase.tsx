@@ -35,10 +35,6 @@ export default function VideoShowcase() {
     }
   }, [])
 
-  const openInstagram = () => {
-    window.open("https://www.instagram.com/p/Dc7OpQvI-xP/", "_blank")
-  }
-
   return (
     <section className="relative bg-gradient-to-b from-black via-gray-900 to-black py-24">
       <div className="container mx-auto px-4">
@@ -57,18 +53,23 @@ export default function VideoShowcase() {
 
         <div className="max-w-6xl mx-auto">
           <div className="relative group rounded-2xl overflow-hidden shadow-2xl border border-gray-700 bg-gradient-to-br from-purple-900/20 to-blue-900/20 backdrop-blur-sm">
-            {/* Instagram post embed */}
+            {/* Featured artwork */}
             <div className="relative group flex justify-center p-4 md:p-8">
-              <div className="w-full max-w-[420px]">
-                <iframe
-                  src="https://www.instagram.com/p/Dc7OpQvI-xP/embed/captioned/"
-                  title="The Ineffable on Instagram"
-                  className="w-full h-[640px] rounded-lg border-2 border-gray-600 bg-white shadow-2xl"
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                  allowFullScreen
-                  scrolling="no"
+              <figure className="w-full max-w-3xl">
+                <img
+                  src="/images/ineffable-legacy.jpeg"
+                  alt="Painterly portrait in purple, red, and gold by Hicham Mneimne, bearing the words: Some minds don't fit into this reality. They create their own. And that's not a curse, it's a legacy."
+                  className="w-full h-auto rounded-lg border-2 border-gray-600 shadow-2xl"
                 />
-              </div>
+                <figcaption className="mt-6 text-center">
+                  <p className="text-sm uppercase tracking-widest text-gray-400">
+                    Witness the ineffable in motion — created by Hicham Mneimne &copy; 2023
+                  </p>
+                  <p className="mt-3 text-lg text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 font-semibold">
+                    This is your legacy.
+                  </p>
+                </figcaption>
+              </figure>
             </div>
 
             {/* Gradient Borders */}
@@ -112,13 +113,6 @@ export default function VideoShowcase() {
                 className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold"
               >
                 Create Your Own Video
-              </Button>
-              <Button
-                onClick={openInstagram}
-                variant="outline"
-                className="border-gray-600 bg-transparent text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-800"
-              >
-                View on Instagram
               </Button>
             </div>
           </div>
