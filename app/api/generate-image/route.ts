@@ -1,4 +1,5 @@
 import { generateImage, gateway } from "ai"
+import { toAiErrorResponse } from "@/lib/ai-error"
 
 // Image generation can take a bit; give the function room.
 export const maxDuration = 120
@@ -22,7 +23,7 @@ export async function POST(req: Request) {
     })
   } catch (err) {
     console.error("[v0] Image generation failed:", err)
-    const message = err instanceof Error ? err.message : "Failed to generate image."
-    return Response.json({ error: message }, { status: 500 })
+    const { status, message } = toAiErrorResponse(err, "Failed to generate image.")
+    return Response.json({ error: message }, { status })
   }
 }

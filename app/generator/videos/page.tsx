@@ -290,6 +290,11 @@ export default function VideosPage() {
                     <p className="text-red-300 text-center">{error}</p>
                   </div>
                 )}
+
+                <p className="text-xs text-gray-400 text-center">
+                  Powered by the Vercel AI Gateway (Google Veo). Video generation requires a minimum $10 Gateway
+                  balance; image and component generation work on the free tier.
+                </p>
               </CardContent>
             </Card>
           </div>

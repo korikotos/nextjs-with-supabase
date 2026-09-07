@@ -15,69 +15,37 @@ export default function GeneratorPage() {
   const [generatedCode, setGeneratedCode] = useState("")
   const [isGenerating, setIsGenerating] = useState(false)
   const [showPreview, setShowPreview] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   const generateComponent = async () => {
-    setIsGenerating(true)
-
-    // Simulate AI generation
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    const templates = {
-      button: `import { Button } from "@/components/ui/button"
-import { ${prompt.includes("icon") ? "ArrowRight" : "Sparkles"} } from "lucide-react"
-
-export default function CustomButton() {
-  return (
-    <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl">
-      ${prompt || "Generated Button"}
-      ${prompt.includes("icon") ? '<ArrowRight className="ml-2 h-4 w-4" />' : ""}
-    </Button>
-  )
-}`,
-      card: `import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
-export default function CustomCard() {
-  return (
-    <Card className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border-gray-700">
-      <CardHeader>
-        <CardTitle className="text-white">${prompt || "Generated Card"}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="text-gray-300">
-          This is a dynamically generated card component with futuristic styling.
-        </p>
-      </CardContent>
-    </Card>
-  )
-}`,
-      form: `import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-
-export default function CustomForm() {
-  const [formData, setFormData] = useState({})
-
-  return (
-    <form className="space-y-4 p-6 bg-gray-800/50 rounded-lg backdrop-blur-sm">
-      <div>
-        <Label htmlFor="input" className="text-white">${prompt || "Generated Input"}</Label>
-        <Input 
-          id="input"
-          className="bg-gray-900/50 border-gray-600 text-white"
-          placeholder="Enter your input..."
-        />
-      </div>
-      <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600">
-        Submit
-      </Button>
-    </form>
-  )
-}`,
+    if (!prompt.trim()) {
+      setError("Please describe the component you want to generate.")
+      return
     }
 
-    setGeneratedCode(templates[componentType as keyof typeof templates] || templates.button)
-    setIsGenerating(false)
+    setIsGenerating(true)
+    setError(null)
+
+    try {
+      const response = await fetch("/api/generate-component", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt, componentType }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to generate component.")
+      }
+
+      setGeneratedCode(data.code)
+    } catch (err) {
+      console.error("Error during component generation:", err)
+      setError(err instanceof Error ? err.message : "An error occurred while generating the component.")
+    } finally {
+      setIsGenerating(false)
+    }
   }
 
   const copyCode = () => {
@@ -158,6 +126,8 @@ export default function CustomForm() {
                     </>
                   )}
                 </Button>
+
+                {error && <p className="text-sm text-red-400">{error}</p>}
               </CardContent>
             </Card>
 
