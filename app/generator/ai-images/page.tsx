@@ -69,15 +69,22 @@ export default function AIImagesPage() {
     setImageUrl("") // Clear previous image
 
     try {
-      // Simulate API call for demo purposes
-      await new Promise((resolve) => setTimeout(resolve, 3000))
+      const response = await fetch("/api/generate-image", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt }),
+      })
 
-      // For demo, we'll use a placeholder image with the prompt
-      const demoImageUrl = `/placeholder.svg?height=512&width=512&text=${encodeURIComponent(prompt.slice(0, 50))}`
-      setImageUrl(demoImageUrl)
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to generate image.")
+      }
+
+      setImageUrl(data.imageUrl)
     } catch (err) {
       console.error("Error during image generation:", err)
-      setError("An error occurred while generating the image.")
+      setError(err instanceof Error ? err.message : "An error occurred while generating the image.")
     } finally {
       setLoading(false)
     }
