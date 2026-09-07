@@ -1,4 +1,5 @@
 import { experimental_generateVideo as generateVideo, gateway } from "ai"
+import { toAiErrorResponse } from "@/lib/ai-error"
 
 // Video generation can take several minutes.
 export const maxDuration = 300
@@ -22,7 +23,7 @@ export async function POST(req: Request) {
     })
   } catch (err) {
     console.error("[v0] Video generation failed:", err)
-    const message = err instanceof Error ? err.message : "Failed to generate video."
-    return Response.json({ error: message }, { status: 500 })
+    const { status, message } = toAiErrorResponse(err, "Failed to generate video.")
+    return Response.json({ error: message }, { status })
   }
 }
