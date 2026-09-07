@@ -24,12 +24,14 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      <div className="fixed top-4 right-4 z-50 md:hidden">
+      {/* Menu Toggle Button */}
+      <div className="fixed top-4 left-4 z-50">
         <Button
           variant="outline"
           size="sm"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
           className="bg-black/80 border-gray-700 text-white backdrop-blur-sm"
         >
           {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -38,8 +40,8 @@ export default function Navigation() {
 
       {/* Navigation */}
       <nav
-        className={`fixed top-4 left-4 z-40 transition-all duration-300 ${
-          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+        className={`fixed top-16 left-4 z-40 transition-all duration-300 ${
+          isOpen ? "translate-x-0 opacity-100" : "-translate-x-[120%] opacity-0 pointer-events-none"
         }`}
       >
         <div className="bg-black/80 backdrop-blur-sm border border-gray-700 rounded-lg p-2">
@@ -70,8 +72,8 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* Overlay for mobile */}
-      {isOpen && <div className="fixed inset-0 bg-black/50 z-30 md:hidden" onClick={() => setIsOpen(false)} />}
+      {/* Click-outside overlay */}
+      {isOpen && <div className="fixed inset-0 bg-black/50 z-30" onClick={() => setIsOpen(false)} />}
     </>
   )
 }
