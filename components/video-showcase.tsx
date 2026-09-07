@@ -35,8 +35,8 @@ export default function VideoShowcase() {
     }
   }, [])
 
-  const downloadVideo = () => {
-    window.open("https://www.youtube.com/watch?v=LQC9Gru9948", "_blank")
+  const openInstagram = () => {
+    window.open("https://www.instagram.com/p/Dc7OpQvI-xP/", "_blank")
   }
 
   return (
@@ -57,18 +57,18 @@ export default function VideoShowcase() {
 
         <div className="max-w-6xl mx-auto">
           <div className="relative group rounded-2xl overflow-hidden shadow-2xl border border-gray-700 bg-gradient-to-br from-purple-900/20 to-blue-900/20 backdrop-blur-sm">
-            {/* Replace the video element section with YouTube embed */}
-            <div className="relative group">
-              <div className="aspect-video w-full">
+            {/* Instagram post embed */}
+            <div className="relative group flex justify-center p-4 md:p-8">
+              <div className="w-full max-w-[420px]">
                 <iframe
-                  src="https://www.youtube.com/embed/LQC9Gru9948?autoplay=0&mute=1&loop=1&playlist=LQC9Gru9948&controls=1&modestbranding=1&rel=0"
-                  title="The Ineffable - Planet 1"
-                  className="w-full h-full rounded-lg border-2 border-gray-600 shadow-2xl"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  src="https://www.instagram.com/p/Dc7OpQvI-xP/embed/captioned/"
+                  title="The Ineffable on Instagram"
+                  className="w-full h-[640px] rounded-lg border-2 border-gray-600 bg-white shadow-2xl"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                   allowFullScreen
+                  scrolling="no"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-lg pointer-events-none"></div>
             </div>
 
             {/* Gradient Borders */}
@@ -106,12 +106,19 @@ export default function VideoShowcase() {
               </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 onClick={() => (window.location.href = "/generator/videos")}
                 className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold"
               >
                 Create Your Own Video
+              </Button>
+              <Button
+                onClick={openInstagram}
+                variant="outline"
+                className="border-gray-600 bg-transparent text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-800"
+              >
+                View on Instagram
               </Button>
             </div>
           </div>
